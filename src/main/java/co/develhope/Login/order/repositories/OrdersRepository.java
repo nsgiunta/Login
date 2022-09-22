@@ -11,4 +11,9 @@ import java.util.List;
 public interface OrdersRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByCreatedBy(User user);
+
+    List<Order> findByRestaurant(User user);
+
+    List<Order> findByRider(User user);
+
 }

@@ -14,7 +14,7 @@ public class User {
     private String name;
     private String surname;
 
-    private boolean isActive;
+    private boolean isActive = false;
 
     @Column(length = 36)
     private String activationCode;
@@ -92,7 +92,7 @@ public class User {
         isActive = active;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

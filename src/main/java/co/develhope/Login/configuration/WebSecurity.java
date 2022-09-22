@@ -54,10 +54,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().
                 antMatchers("/auth/**").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ROLE_"+ Roles.ADMIN, "ROLE_" + Roles.OWNER,
-                        "ROLE_" + Roles.SUPER_ADMIN)
+                /*.antMatchers("/admin/**").hasAnyRole("ROLE_")
                 .antMatchers("/app/**").hasAnyRole("ROLE_" + Roles.REGISTERED)
-                /*.antMatchers("/admin/global/all-data-eraser").hasAnyRole("ROLE_SUPER_ADMIN")
+                .antMatchers("/admin/global/all-data-eraser").hasAnyRole("ROLE_SUPER_ADMIN")
                 .antMatchers("/admin/**").hasAnyRole("ROLE_ADMIN", "ROLE_OWNER", "ROLE_SUPER_ADMIN")
                 .antMatchers("/blog/**").hasRole("ROLEEDITOR")
                 .antMatchers("/dev-tools/**").hasAnyAuthority("DO_DEV_TOOLS")

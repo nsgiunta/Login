@@ -1,6 +1,7 @@
 package co.develhope.Login.auth.controller;
 
 import co.develhope.Login.auth.entities.LoginDTO;
+import co.develhope.Login.auth.entities.LoginRTO;
 import co.develhope.Login.auth.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +17,9 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping("/login")
-    public void login(@RequestBody LoginDTO loginDTO){
-        loginService.login(loginDTO);
+    public LoginRTO login(@RequestBody LoginDTO loginDTO){
+
+        return loginService.login(loginDTO);
     }
 
 }

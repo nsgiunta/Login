@@ -3,16 +3,16 @@ package co.develhope.Login.auth.entities;
 public class SignupDTO {
 
     private String name;
-    private String surName;
+    private String surname;
     private String email;
     private String password;
 
     public SignupDTO() {
     }
 
-    public SignupDTO(String name, String surName, String email, String password) {
+    public SignupDTO(String name, String surname, String email, String password) {
         this.name = name;
-        this.surName = surName;
+        this.surname = surname;
         this.email = email;
         this.password = password;
     }
@@ -25,12 +25,12 @@ public class SignupDTO {
         this.name = name;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getEmail() {

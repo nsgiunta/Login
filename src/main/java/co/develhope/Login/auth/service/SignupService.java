@@ -33,19 +33,23 @@ public class SignupService {
     private PasswordEncoder passwordEncoder;
 
     public User signup(SignupDTO signupDTO) throws Exception {
+       return this.signup(signupDTO, Roles.REGISTERED);
+    }
+
+    public User signup(SignupDTO signupDTO, String role) throws Exception {
         User userInDB = userRepository.findByEmail(signupDTO.getEmail());
         if(userInDB != null) throw new Exception("user already exist");
         User user = new User();
         user.setName(signupDTO.getName());
         user.setEmail(signupDTO.getEmail());
-        user.setSurname(signupDTO.getSurName());
+        user.setSurname(signupDTO.getSurname());
         user.setPassword(passwordEncoder.encode(signupDTO.getPassword()));
         user.setActive(false);
 
         user.setActivationCode(UUID.randomUUID().toString());
 
         Set<Role> roles = new HashSet<>();
-        Optional<Role> userRole = roleRepository.findByName(Roles.REGISTERED);
+        Optional<Role> userRole = roleRepository.findByName(role.toUpperCase());
         if (!userRole.isPresent()) throw new Exception("Cannot set user role");
         roles.add(userRole.get());
         user.setRoles(roles);

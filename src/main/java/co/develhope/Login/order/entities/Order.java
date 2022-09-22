@@ -1,5 +1,6 @@
 package co.develhope.Login.order.entities;
 
+import co.develhope.Login.user.entities.User;
 import co.develhope.Login.utils.entities.BaseEntity;
 
 import javax.persistence.*;
@@ -20,13 +21,21 @@ public class Order extends BaseEntity {
     private String zipCode;
     private String state;
 
+    private OrderStateEnum status = OrderStateEnum.CREATED;
+
+    @ManyToOne
+    private User restaurant;
+
+    @ManyToOne
+    private User rider;
+
     private Double totalPrice;
 
     public Order() {
     }
 
     public Order(Long id, String description, String address, String number, String city, String zipCode, String state,
-                 Double totalPrice) {
+                 Double totalPrice, OrderStateEnum status, User restaurant, User rider) {
         this.id = id;
         this.description = description;
         this.address = address;
@@ -34,6 +43,17 @@ public class Order extends BaseEntity {
         this.city = city;
         this.zipCode = zipCode;
         this.state = state;
+        this.status = status;
+        this.restaurant = restaurant;
+        this.rider = rider;
+    }
+
+    public OrderStateEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStateEnum status) {
+        this.status = status;
     }
 
     public String getAddress() {
@@ -74,6 +94,22 @@ public class Order extends BaseEntity {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public User getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(User restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public User getRider() {
+        return rider;
+    }
+
+    public void setRider(User rider) {
+        this.rider = rider;
     }
 
     public Double getTotalPrice() {
